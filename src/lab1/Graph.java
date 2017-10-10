@@ -1,5 +1,5 @@
 ﻿package lab1;
-5555
+
 import java.io.File;
 import java.util.*;
 public class Graph{
