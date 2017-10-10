@@ -1,5 +1,5 @@
 package lab1;
-
+5555
 import java.io.File;  
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
