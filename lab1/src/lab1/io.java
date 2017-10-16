@@ -1,9 +1,5 @@
 package lab1;
-<<<<<<< HEAD
-7777
-=======
 
->>>>>>> f5e7bdc4c57a050feeec6c8f03fead6f436e4190
 import java.io.File;  
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

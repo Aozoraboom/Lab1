@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 
 it just means you value your ego    1111  55555
 
+=======
+it just means you value your ego
+hahahahaha
+>>>>>>> f5e7bdc4c57a050feeec6c8f03fead6f436e4190
