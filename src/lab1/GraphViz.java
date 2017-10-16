@@ -1,4 +1,5 @@
 package lab1;
+kkk
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
