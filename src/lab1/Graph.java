@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
-//import java.util.*;
+
 
 public class Graph {
   protected static int m;
@@ -121,7 +121,7 @@ public class Graph {
     String type = "jpg";
     File out = new File("graphFile" + "." + type);
     gr.writeGraphToFile(gr.getGraph(gr.getDotSource(),type),out);
- //   System.out.println("创建成功！");
+
     log.fine("创建成功！");
   }
   
@@ -230,53 +230,7 @@ public class Graph {
     }
     return null;
   }
-  /*
-    public String calcShortestPath(String word1, String word2)
-    {
-         
-        String result=new String();
-         path=new int[m][m];
-         dist=new int[m][m];
-        floyd();   
-        int t1=search(word1);
-        int t2=search(word2);
-        if(t1==t2)
-        {System.out.print("两次相同");
-        return null;}
-        if(t1>=0&&t2>=0)
-        {  findPath(t1,t2);
-        if(edge[t1][t2]<=0 && re.isEmpty())
-            {System.out.print("不可达!\n");
-            re.clear();
-            return null;}
-        
-        else re.add(0, word1); 
-        if(dist[t1][t2]>edge[t1][t2]&&edge[t1][t2]>0)
-        {System.out.print(word1+"->"+word2);
-        System.out.print("\n"+"最短距离："+edge[t1][t2]+"\n");
-        re.clear();
-        return result;} 
-        else {
-        for (int i=0;i<re.size();i++)
-         result+=(re.get(i)+"->");
-        result+=word2;
-        System.out.print(result);
-        System.out.print("\n"+"最短距离："+dist[t1][t2]+"\n");
-        re.clear();
-        return result;
-        }
-        }
 
-        
-        else if(t1<0 && t2>=0)
-        System.out.printf("No “%s” in the graph!\n",word1);
-        else if(t1>=0 &&t2<0)
-            System.out.printf("No “%s” in the graph!\n",word2);
-        else System.out.printf("No “%s” or “%s” in the graph!\n",word1,word2);
-        re.clear();
-        return null;
-    }
-*/
     
   /**
    * set default mock parameter.（方法说明）
@@ -397,7 +351,6 @@ public class Graph {
       }
     }
     int a = (int)(Math.random() * m);
-  //  int a = (int)(Random.nextInt(m));
     buf.append(list[a]);
     while (ran(a) != -1) {
       int b = ran(a);
