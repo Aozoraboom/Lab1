@@ -130,6 +130,7 @@ public class Graph {
    * set default mock parameter.（方法说明）
    * @throws Exception if has error(异常说明)
    */     
+  /*
   public void printBridgeWords(String word1, String word2,String result) {      
     int t1 = search(word1);
     int t2 = search(word2);
@@ -155,7 +156,7 @@ public class Graph {
       }
       System.out.print("“" + t[t.length - 2] + "”" + " and " + "“" + t[t.length - 1] + "”" + "%n");
     }
-  }
+  }*/
 
   /**
    * set default mock parameter.（方法说明）
@@ -185,29 +186,48 @@ public class Graph {
    * @throws Exception if has error(异常说明)
    */  
   public String queryBridgeWords(String word1, String word2) {
-    List<String> l = new ArrayList<>();
-    String result = null;
-    int num = 0;
-    int t1 = search(word1);
-    int t2 = search(word2);
-    if (t1 < 0 || t2 < 0) {
-      result =  null;
-    } else if (t1 >= 0 && t2 >= 0) {
-      for (int i = 0;i <= m;i++) {
-        if (edge[t1][i] > 0 && edge[i][t2] > 0) {
-          l.add(list[i]);
-          num++;
-        }
-      }
-      if (num <= 0) {
-        result =  null;
-      } else if (num >= 1) {
-        result = listToString(l);
-      }
-    }
-    return result;       
-  }
-  
+	  boolean k1= word1.matches("[a-zA-Z]+");
+	  boolean k2= word1.matches("[a-zA-Z]+");
+	  if(k1!=true ||k2!=true) {
+		  return "Input error!";
+	  }
+	    List<String> l = new ArrayList<>();
+	    String result = null;
+	    int num = 0;
+	    int t1 = search(word1);
+	    int t2 = search(word2);
+	
+	    if (t1 < 0 || t2 < 0) {
+	      if (t1 < 0 && t2 >= 0) {
+	    	  result="No "+word1+" in the graph!";
+	         
+	      } else if (t1 >= 0 && t2 < 0) {
+	         result ="No "+word2+" in the graph!";
+	      } else {
+	    	  result="No "+word1+" or "+word2+" in the graph!";
+	      }
+	    } else if (t1 >= 0 && t2 >= 0) {
+	      for (int i = 0;i <= m;i++) {
+	        if (edge[t1][i] > 0 && edge[i][t2] > 0) {
+	          l.add(list[i]);
+	          num++;
+	        }
+	      }
+	      if (num <= 0) {
+	    	  result="No bridge words from "+word1+ " to "+word2+" !";
+	      } else if (num == 1) {
+	        result = "The bridge words from "+word1+" to "+word2+" is: "+l.get(0);
+	      } else if (num > 1) {
+	    	result="The bridge words from "+word1+ " to "+word2+" are:";
+	    	for (int i = 0;i < l.size() - 2;i++) {
+	            result+="“" + l.get(i) + "”,";
+	          }
+	          result+="“" + l.get(l.size()-2) + "”" + " and " + "“" + l.get(l.size()-1) + "”";
+	      }
+	    }
+	    return result;       
+	  }
+	  
   /**
    * set default mock parameter.（方法说明）
    * @return data manager(返回值说明)
@@ -385,6 +405,6 @@ public class Graph {
     } else {
       return -1;
     }
-  
+  }
 }
->>>>>>> Lab4
+

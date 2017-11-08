@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.Reader;
@@ -80,7 +81,7 @@ public class io {
 	            e.printStackTrace();  
 	        }  
 	  }
-	  public static void main(String[] args) {
+	  public static void main(String[] args) throws IOException {
 		   
 		Graph G= new Graph(readFileByChars("dd.txt").length); 
 		G.creat(readFileByChars("dd.txt"));
@@ -104,7 +105,7 @@ public class io {
 		word1=sc.next();
 		System.out.print("Word2£º");
 		word2=sc.next();
-		G.printBridgeWords( word1, word2,G.queryBridgeWords(word1,word2));
+		System.out.println(G.queryBridgeWords(word1, word2));
 		}
 		else if(a==3)
 		{sc.nextLine();

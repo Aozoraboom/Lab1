@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="D:/struts-2.5.13-all/struts-2.5.13/lib/freemarker-2.3.23.jar"/>
 	<classpathentry kind="lib" path="D:/struts-2.5.13-all/struts-2.5.13/lib/ognl-3.1.15.jar"/>
 	<classpathentry kind="lib" path="D:/struts-2.5.13-all/struts-2.5.13/lib/struts2-core-2.5.13.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
