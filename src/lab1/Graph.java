@@ -1,6 +1,4 @@
-
 package lab1;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +11,16 @@ public class Graph {
   protected static int m;
   protected static String[] list;  
   protected static int[][] edge; 
-  protected static int maxWeight = -1;
+  protected final int maxWeight = -1;
   protected static int[][] path;   
   protected static int[][] dist; 
   private List<String> re = new ArrayList<String>();
-  Logger log = Logger.getLogger(Graph.class.getName());
-  
+ 
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */ 
+  
   public Graph(int n) {
     list = new String[n];
     edge = new int[n][n];
@@ -32,10 +30,21 @@ public class Graph {
       }
     }
   } 
-  
+  public int getm()
+  {
+	  return m;
+  }
+  public String[] getlist()
+  {
+	  return list;
+  }
+  public int[][] getedge()
+  {
+	  return edge;
+  }
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */ 
   public void creat(String[] t) { 
     int j = 0;
@@ -84,10 +93,10 @@ public class Graph {
   }
 
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */ 
-  public int  search(String t) {
+  protected int  search(String t) {
     for (int i = 0;i < list.length;i++) {
       if (t.equals(list[i])) {
         return i;
@@ -96,82 +105,14 @@ public class Graph {
     return -1;
   }
   
-  /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
-   */   
-  public void showDirectedGraph() throws IOException {
-    String str = "";
-    GraphViz gr = new GraphViz();
-    for (int i = 0;i < m;i++) {
-      for (int j = 0;j < m;j++) {
-        if (edge[i][j] > 0) {
-          str = str + list[i];
-          str = str + "->";
-          str = str + list[j];
-          str = str + "[label=\"";
-          str = str + edge[i][j];
-          str = str + "\"]";
-          str = str + "\n";
-        }
-      }
-    }
-    gr.addln(gr.start_graph());
-    gr.add(str);
-    gr.addln(gr.end_graph());
-    String type = "jpg";
-    File out = new File("graphFile" + "." + type);
-    gr.writeGraphToFile(gr.getGraph(gr.getDotSource(),type),out);
 
-    log.fine("åˆ›å»ºæˆåŠŸï¼");
-  }
-  
-  /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
-   */     
-  /*
-    */     
-   public void printBridgeWords(String word1, String word2,String result) {      
-     boolean k1= word1.matches("[a-zA-Z]+");
-     boolean k2= word1.matches("[a-zA-Z]+");
-		  if(k1!=true ||k2!=true) {
-			  System.out.printf( "Input error!");
-			  return;
-		  }
-	 int t1 = search(word1);
-     int t2 = search(word2);
-     if (t1 < 0 || t2 < 0) {
-       if (t1 < 0 && t2 >= 0) {
-         System.out.printf("No â€œ%sâ€ in the graph!%n",word1);
-       } else if (t1 >= 0 && t2 < 0) {
-         System.out.printf("No â€œ%sâ€ in the graph!%n",word2);
-       } else {
-         System.out.printf("No â€œ%sâ€ or â€œ%sâ€ in the graph!%n",word1,word2);
-       }
-     } else if (result == null) {
-       System.out.printf("No bridge words from â€œ%sâ€ to â€œ%sâ€!%n",word1,word2);
-     } else {
-       String[] t = result.toLowerCase().split(" ");        
-       if (t.length == 1) {
-         System.out.printf("The bridge words from â€œ%sâ€ to â€œ%sâ€ is:â€œ%sâ€%n",word1,word2,t[0]);
-       } else if (t.length > 1) {
-         System.out.printf("The bridge words from â€œ%sâ€ to â€œ%sâ€ is:",word1,word2);
-       }
-       for (int i = 0;i < t.length - 2;i++) {
-         System.out.print("â€œ" + t[i] + "â€,");
-       }
-       System.out.print("â€œ" + t[t.length - 2] + "â€" + " and " + "â€œ" + t[t.length - 1] + "â€" + "%n");
-     }
-   }
- 
 
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @return data manager(è¿”å›å€¼è¯´æ˜)
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @return data manager(·µ»ØÖµËµÃ÷)
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */  
-  public static String listToString(List<String> list) {
+  protected static String listToString(List<String> list) {
     if (list == null) {
       return null;
     }
@@ -189,19 +130,31 @@ public class Graph {
   }
   
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @return data manager(è¿”å›å€¼è¯´æ˜)
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @return data manager(·µ»ØÖµËµÃ÷)
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */  
   public String queryBridgeWords(String word1, String word2) {
+	  boolean k1= word1.matches("[a-zA-Z]+");
+ 	  boolean k2= word1.matches("[a-zA-Z]+");
+ 	  if(k1!=true ||k2!=true) {
+ 	    return "error";
+ 	  }
 	     List<String> l = new ArrayList<>();
 	      String result = null;
 	      int num = 0;
 	      int t1 = search(word1);
 	      int t2 = search(word2);
 	      if (t1 < 0 || t2 < 0) {
-	        result =  null;
-	      } else if (t1 >= 0 && t2 >= 0) {
+	  	    if (t1 < 0 && t2 >= 0) {
+	       	   result="noword1";
+	  	         
+	          } else if (t1 >= 0 && t2 < 0) {
+	   	       result ="noword2";
+	          } else {
+	   	      result="noboth";
+	   	    }}
+	  	    else if (t1 >= 0 && t2 >= 0) {
 	        for (int i = 0;i <= m;i++) {
 	          if (edge[t1][i] > 0 && edge[i][t2] > 0) {
 	            l.add(list[i]);
@@ -209,17 +162,18 @@ public class Graph {
 	          }
 	        }
 	        if (num <= 0) {
-	          result =  null;
+	          result =  "nobrige";
 	        } else if (num >= 1) {
 	          result = listToString(l);
 	        }
 	      }
 	      return result;       
 	   }
+ 
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @return data manager(è¿”å›å€¼è¯´æ˜)
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @return data manager(·µ»ØÖµËµÃ÷)
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */  
   public String generateNewText(String inputText) {
     if (inputText != null) {
@@ -227,14 +181,14 @@ public class Graph {
       String[] text = inputText.toLowerCase().split(" ");
       for (int i = 0;i < text.length - 1;i++) {
         l.add(text[i]);
-        if (queryBridgeWords(text[i],text[i + 1]) != null) {
+        String z=queryBridgeWords(text[i],text[i + 1]);
+        if ( (z!="nobrige") && (z!="error")&&(z!="noword1")&&(z!="noword2")&&(z!="noboth")) {
           String[] t = queryBridgeWords(text[i],text[i + 1]).split(" ");
           l.add(t[(int) (Math.random() * (t.length))]);
         }
       }
       l.add(text[text.length - 1]);
       String str = listToString(l);
-      System.out.print(str);
       return str;
     }
     return null;
@@ -242,9 +196,9 @@ public class Graph {
 
     
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @return data manager(è¿”å›å€¼è¯´æ˜)
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @return data manager(·µ»ØÖµËµÃ÷)
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */   
   public String calcShortestPath(String word1, String word2) throws IOException {        
     String result = new String();
@@ -254,62 +208,35 @@ public class Graph {
     int t1 = search(word1);
     int t2 = search(word2);
     if (t1 == t2) {
-      System.out.print("ä¸¤æ¬¡ç›¸åŒ");
-      return null;
+      result="error";
+      return result;
     }
     if (t1 >= 0 && t2 >= 0) {  
       findPath(t1,t2);
       if (edge[t1][t2] <= 0 && re.isEmpty()) {
-        System.out.print("ä¸å¯è¾¾!\n");
+        result="²»¿É´ï£¡";
         re.clear();
-        return null;
+        return result ;
       } else {
         re.add(0, word1); 
-      }        
-      String str = "";
+      }  
       for (int i = 0;i < re.size();i++) {
-        result += re.get(i);
-        result += " ";
-        result += "[style=\"filled\",color=\"black\",fillcolor=\"chartreuse\"]";
-        result += ";";
-        result += "\n";
+        result += re.get(i)+" ";
       }
       result +=  word2;
-      result += " ";
-      result += "[style=\"filled\",color=\"black\",fillcolor=\"chartreuse\"]";
-      result += ";";
-      for (int i = 0;i < m;i++) {
-        for (int j = 0;j < m;j++) {
-          if (edge[i][j] > 0) {
-            str = str + list[i];
-            str = str + "->";
-            str = str + list[j];
-            str = str + "[label=\"";
-            str = str + edge[i][j];
-            str = str + "\"]";
-            str = str + "\n";
-          }
-        }
-      }
-      GraphViz gr = new GraphViz();
-      gr.addln(gr.start_graph());
-      gr.add(result);
-      gr.add(str);
-      gr.addln(gr.end_graph());
-      String type = "jpg";
-      File out = new File("graphFile" + "." + type);
-      gr.writeGraphToFile(gr.getGraph(gr.getDotSource(),type),out);
-      System.out.print("æœ€çŸ­è·ç¦»ï¼š" + dist[t1][t2] + "%n");
+      result+= " "+dist[t1][t2];
       re.clear();
       return result;
     } else if (t1 < 0 && t2 >= 0) {
-      System.out.printf("No â€œ%sâ€ in the graph!%n",word1);
+      result="noword1";
+      return result;
     } else if (t1 >= 0 && t2 < 0) {
-      System.out.printf("No â€œ%sâ€ in the graph!%n",word2);
+     result="noword2";
+     return result;
     } else {
-      System.out.printf("No â€œ%sâ€ or â€œ%sâ€ in the graph!%n",word1,word2);
+      result ="noboth";
+      return result;
     }
-    return null;
   }
     
   protected  void floyd() {   
@@ -347,9 +274,9 @@ public class Graph {
   }
       
   /**
-   * set default mock parameter.ï¼ˆæ–¹æ³•è¯´æ˜ï¼‰
-   * @return data manager(è¿”å›å€¼è¯´æ˜)
-   * @throws Exception if has error(å¼‚å¸¸è¯´æ˜)
+   * set default mock parameter.£¨·½·¨ËµÃ÷£©
+   * @return data manager(·µ»ØÖµËµÃ÷)
+   * @throws Exception if has error(Òì³£ËµÃ÷)
    */
   public String randomWalk() {
     int[][] p = new int[m][m];
@@ -373,7 +300,6 @@ public class Graph {
       }     
     }
     String result = buf.toString();
-    System.out.print(result);
     return result;     
   }
     
@@ -395,4 +321,5 @@ public class Graph {
     }
   }
 }
+
 

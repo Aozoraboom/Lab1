@@ -6,13 +6,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
+
 public class GraphTest {
-	
+
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -20,90 +16,53 @@ public class GraphTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+    Controller C =new  Controller();
 	@Test
-	public void testGenerateNewText2() {
-Graph G= new Graph(readFileByChars("dd.txt").length); 
-	G.creat(readFileByChars("dd.txt"));
-			String inputText="it just means you value your relationship more than your ego";
-			String res="it just means you value your relationship more than your ego";
-			String result=G.generateNewText(inputText);
-			Assert.assertEquals(res,result);
-		}
-	@Test
-	public void testGenerateNewText1() {
-Graph G= new Graph(readFileByChars("dd.txt").length); 
-	G.creat(readFileByChars("dd.txt"));
-			String inputText=null;
-			String res=null;
-			String result=G.generateNewText(inputText);
-			Assert.assertEquals(res,result);
-		}
-	@Test
-	public void testGenerateNewText3() {
-Graph G= new Graph(readFileByChars("dd.txt").length); 
-	G.creat(readFileByChars("dd.txt"));
-			String inputText="Apologizing does not always mean you are wrong";
-			String res="apologizing does not always mean you are wrong";
-			String result=G.generateNewText(inputText);
-			Assert.assertEquals(res,result);
-		}
-	
-
-
-		public static String[] readFileByChars ( String fileName) {  
-	        File file = new File(fileName);  
-	        Reader reader = null;  
-	        try {   
-	            reader = new InputStreamReader(new FileInputStream(file));  
-	            int tempchar;  
-	            char temp[][] = new char[1000][20];  
-	            
-	            int i= 0,j=0;
-	            while ((tempchar = reader.read()) != -1) {  
-	              
-	                if ( tempchar>='a' && tempchar<='z' ) {  
-	                  
-	                    temp[j][i]= (char) tempchar;
-	                    i++;
-	                }  
-	                else if(tempchar>='A' && tempchar<='Z')
-	                {
-	                	tempchar+=32;
-	                
-	                	 temp[j][i]=(char)tempchar;
-		                 i++;
-	                }
-	                else 
-	                {	
-	                j++;
-	                i=0;}
-	              
-	            }  
-	              
-	            reader.close();  
-	            return change(temp,j);
-	        } catch (Exception e) {  
-	            e.printStackTrace();  
-	        }
-			return null;  }
-	  public static String[] change ( char x[][],int n ){
-		String[] a=new String[n];
-		ArrayList<String> l=new ArrayList<String>();
-		  for (int i=0;i<n;i++)
-		{   
-			a[i]=String.valueOf(x[i]);
-			a[i]=a[i].trim();
-		}
-	    for (int i=0;i<n;i++)
-	    {
-	    	if(!a[i].isEmpty())
-	    		l.add(a[i]);
-	    }
-	    
-	    String[] b=new String[l.size()];
-	    l.toArray(b);
-
-	    return b;
-	  }
+	public void testQueryBridgeWords1() {
+		String result = C.printBridgeWords(" ", " ");
+		Assert.assertEquals("有问题", "Input error!", result);
 	}
+	@Test
+	public void testQueryBridgeWords2() {
+		String result = C.printBridgeWords("aaa", "you");
+		Assert.assertEquals("有问题", "No aaa in the graph!", result);
+	}
+	@Test
+	public void testQueryBridgeWords3() {
+		String result = C.printBridgeWords("you", "bbb");
+		Assert.assertEquals("有问题", "No bbb in the graph!", result);
+	}
+	@Test
+	public void testQueryBridgeWords4() {
+		String result = C.printBridgeWords("&&", "you");
+		Assert.assertEquals("有问题", "Input error!", result);
+	}
+	@Test
+	public void testQueryBridgeWords5() {
+		String result = C.printBridgeWords("means", "value");
+		Assert.assertEquals("有问题", "The bridge words from means to value is: you", result);
+	}
+	@Test
+	public void testQueryBridgeWords6() {
+		String result = C.printBridgeWords("you", "wrong");
+		Assert.assertEquals("有问题", "The bridge words from you to wrong are:“is” and “are”", result);
+	}
+	@Test
+	public void testQueryBridgeWords7() {
+		String result = C.printBridgeWords("the", "is");
+		Assert.assertEquals("有问题", "No bridge words from the to is !", result);
+	}
+	@Test
+	public void testQueryBridgeWords8() {
+		String result = C.printBridgeWords("person", "right");
+		Assert.assertEquals("有问题", "The bridge words from person to right are:“you”,“is” and “just”", result);
+
+	}
+	@Test
+	public void testQueryBridgeWords9() {
+		String result = C.printBridgeWords("aaa", "bbb");
+		Assert.assertEquals("有问题", "No aaa and bbb in the graph!", result);
+
+	}
+	
+}
